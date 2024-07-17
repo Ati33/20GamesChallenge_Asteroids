@@ -10,6 +10,7 @@ size = Vector2(15, 8)
 size = Vector2(15, 8)
 
 [node name="Player" type="CharacterBody2D" groups=["PlayerGroup"]]
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_kidk6")
 

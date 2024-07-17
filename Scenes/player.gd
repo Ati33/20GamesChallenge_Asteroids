@@ -25,9 +25,6 @@ func _physics_process(delta):
 	if Input.is_action_pressed("backward"):
 		velocity -= direction * SPEED * delta
 	move_and_slide()
-	
-	#position.x = clamp(position.x, 0, view.size.x)
-	#position.y = clamp(position.y, 0, view.size.y)
 	_screen_wrap()
 
 

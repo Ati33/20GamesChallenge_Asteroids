@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmstsxvaf5c6v"]
+[gd_scene load_steps=7 format=3 uid="uid://bmstsxvaf5c6v"]
 
 [ext_resource type="Texture2D" uid="uid://cdapwcamrf772" path="res://Assets/enemypng.png" id="1_h2skw"]
 [ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_j13rv"]
@@ -10,7 +10,10 @@ size = Vector2(14, 15)
 size = Vector2(14, 15)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w2ewk"]
-radius = 146.014
+radius = 427.117
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_714ma"]
+radius = 405.123
 
 [node name="enemy" type="CharacterBody2D" groups=["EnemyGroup"]]
 collision_layer = 2
@@ -34,9 +37,19 @@ shape = SubResource("RectangleShape2D_phsjw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectArea"]
 shape = SubResource("CircleShape2D_w2ewk")
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0, -8.085)
+
+[node name="ShootDetectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootDetectArea"]
+shape = SubResource("CircleShape2D_714ma")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="PlayerDetectArea" to="." method="_on_player_detect_area_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_exited" from="PlayerDetectArea" to="." method="_on_player_detect_area_body_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="body_entered" from="ShootDetectArea" to="." method="_on_shoot_detect_area_body_entered"]
+[connection signal="body_exited" from="ShootDetectArea" to="." method="_on_shoot_detect_area_body_exited"]

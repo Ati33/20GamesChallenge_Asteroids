@@ -1,26 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://depc1ggo4dose"]
+[gd_scene load_steps=3 format=3 uid="uid://2q0ys2o73lef"]
 
-[ext_resource type="Script" path="res://Scenes/bullet.gd" id="1_0qn2m"]
+[ext_resource type="Script" path="res://Scenes/bullet.gd" id="1_4l6bb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wxsr"]
 size = Vector2(5.0025, 5.01)
 
-[node name="Bullet" type="Area2D" groups=["BulletGroup"]]
-collision_mask = 2
-script = ExtResource("1_0qn2m")
-speed = 1000
+[node name="EnemyBullet" type="Area2D" groups=["BulletGroup"]]
+collision_layer = 2
+script = ExtResource("1_4l6bb")
+speed = 500
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_top = -3.0
-offset_right = 3.0
-metadata/_edit_use_anchors_ = true
+offset_top = -5.0
+offset_right = 5.0
+color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.49875, -1.495)
+position = Vector2(2.49875, -2.495)
 shape = SubResource("RectangleShape2D_2wxsr")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(1.5, 2.5)
-scale = Vector2(0.15, 0.05)
+position = Vector2(2.5, 2.5)
+scale = Vector2(0.25, 0.05)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
